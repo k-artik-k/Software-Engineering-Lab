@@ -1,21 +1,32 @@
 import matplotlib.pyplot as plt
 
+
 def quad(day, a, b, c):
-    return a * day ** 2 + b * day + c
+    return a * (day ** 2) + b * day + c
 
 def main():
-    equations = [(1, 2, 3), (2, -1, 5), (-1, 3, 10)]
+    
+    a, b, c = 1, -2, 3  
+    
+ 
     num_days = 10
-    days = list(range(1, num_days + 1))
+    
+    
+    days = []
+    temps = []
+    
+    for day in range(1, num_days + 1):
+        temp = quad(day, a, b, c)
+        days.append(day)
+        temps.append(temp)
+    
 
-    for idx, (a, b, c) in enumerate(equations, start=1):
-        temp = [quad(day, a, b, c) for day in days]
-        plt.plot(days, temp, label=f'Eqn {idx}: {a}x² + {b}x + {c}')
-
-    plt.title('Iterative Quadratic Modeling')
+    plt.plot(days, temps, marker='o', label=f'Temperature: {a}x² + {b}x + {c}')
+    plt.title('Temperature Model (Iterative, Hardcoded)')
     plt.xlabel('Days')
-    plt.ylabel('Temp (in °C)')
+    plt.ylabel('Temp (°C)')
     plt.legend()
+    plt.grid(True)
     plt.show()
 
 main()
